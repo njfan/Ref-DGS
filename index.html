@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Ref-DGS: Reflective Dual Gaussian Splatting">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="GNu68NbqJUZfuiEzwKsL3XQUvm4ld16m3Hz1ixNFbJ0" />
+
+  <title>Ref-DGS: Reflective Dual Gaussian Splatting</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href=http://fungraph.inria.fr>
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://project.inria.fr/fungraph/publications/">
+            Fungraph Publications
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav> -->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Ref-DGS: Reflective Dual Gaussian Splatting</h1>
+          <!-- <h1 style="font-size:1.5rem"> SIGGRAPH 2026 Submission<br>(ACM Transactions on Graphics) <br></h1> -->
+           <!-- <h1 style="font-size:1.5rem"> SIGGRAPH 2026 Submission</h1> -->
+          <div class="is-size-5 publication-authors">
+            <!-- <span class="author-block">
+              <a href="https://scholar.google.at/citations?user=jeasMB0AAAAJ&hl=en">Bernhard Kerbl</a><sup>* 1,2</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>
+            <span class="author-block">
+              <a href="https://grgkopanas.github.io/">Georgios Kopanas</a><sup>* 1,2</sup></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="author-block">
+              <a href="https://people.mpi-inf.mpg.de/~tleimkue/">Thomas Leimkühler</a><sup>3</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>
+            <span class="author-block">
+              <a href="http://www-sop.inria.fr/members/George.Drettakis/">George Drettakis</a><sup>1,2</sup>
+            </span>
+          </div>
+          
+          <div class="is-size-5 publication-authors">
+            <sup>*</sup> Denotes equal contribution
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Inria</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="author-block"><sup>2</sup>Université Côte d'Azur</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="author-block"><sup>3</sup>MPI Informatik</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <sup>1</sup> <a href="https://www.inria.fr/"><img style="width:15%; padding-right: 15px;" src="content/images/inria_logo.png"> </a>
+            <sup>2</sup> <a href="https://univ-cotedazur.eu/"><img style="width:20%; padding-right: 15px;" src="content/images/uca_logo.png"> </a>
+            <sup>3</sup> <a href="https://www.mpi-inf.mpg.de"><img style="width:12%; padding-right: 15px;" src="content/images/mpi_logo-01-01.jpg"> </a>
+          </div> -->
+          <div class="column has-text-centered">
+            <!-- <div class="publication-links">
+              <span class="link-block">
+                <a href="ref_dgs.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+			  <!-- <span class="link-block">
+                <a href="3d_gaussian_splatting_low.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper - 25MB </span>
+                </a>
+              </span>
+			  <br> -->
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code coming soon</span>
+                  </a>
+              </span> -->
+			  <!-- <span class="link-block">
+                <a href="datasets/input/tandt_db.zip"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-paperclip"></i>
+                  </span>
+                  <span>Scenes - 650MB</span>
+                  </a>
+              </span>
+			  <span class="link-block">
+                <a href="evaluation/images.zip"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-clipboard"></i>
+                  </span>
+                  <span>Results - 7GB</span>
+                  </a>
+              </span>
+
+			  <span class="link-block">
+                <a href="https://www-sop.inria.fr/reves/Basilic/2023/KKLD23/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-align-justify"></i>
+                  </span>
+                  <span>Group Publ. Page</span>
+                  </a>
+              </span>
+            </div>
+          </div> -->
+
+          <!-- <div class="is-size-5 publication-authors">
+            <a href="https://team.inria.fr/graphdeco/"> <img style="width:30%; padding-right: 15px;" src="content/images/graphdeco_logo.png"></a>
+          </div> -->
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--
+<section class="hero teaser">
+  <div class="container">
+    <div class="hero-body">
+      <img src="content/images/CatacausticGeometry.svg">
+      <h2 class="subtitle has-text-centered">
+        The geometry of catacaustics: <i>(a)</i> In the case of a planar reflector, a reflected point <b>P</b> results in a static virtual point <b>p</b>, independent of camera position <b>c</b>. <i>(b)</i> For curved reflectors (here a convex example), camera motion leads to <b>p</b> tracing a surface, called catacaustic. <i>(c)</i> The catacaustic for a single point <b>P</b> is defined by the envelope of virtual reflected rays, depicted as the bold orange curve, which at each point is tangent to one of the virtual reflected rays. Virtual images of <b>P</b> are formed only on the catacaustic trajectory. <i>(d)</i> In a point-based rendering setup, where the tangent constraint is not satisfied, the trajectory of virtual points is not unique. An infinite number of trajectories (three examples are shown) lead to the same apparent reflection. Reflection rays are omitted for clarity.
+      </h2>
+    </div>
+  </div>
+</section>
+-->
+
+<!-- <section class="hero is-light is-small">
+  <div class="hero-body" >
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-museum">
+          <video poster="" id="museum" autoplay controls muted loop height="100%">
+            <source src="content/videos/bicycle.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-truck">
+          <video poster="" id="truck" autoplay controls muted loop height="100%">
+            <source src="content/videos/stump.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item ponche">
+          <video poster="" id="ponche" autoplay controls muted loop height="100%">
+            <source src="content/videos/garden.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-stairs">
+          <video poster="" id="stairs" autoplay controls muted loop height="20%">
+            <source src="content/videos/playroom.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+
+      <video autoplay controls muted loop style="max-width: 80%; height: auto;">
+        <source src="content/videos/video.mp4" type="video/mp4">
+      </video>
+
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          Reflective appearance, especially strong and typically near-field specular reflections, 
+          poses a fundamental challenge for accurate surface reconstruction and novel view synthesis. 
+          Existing Gaussian splatting methods either fail to model near-field specular reflections or 
+          rely on explicit ray tracing at substantial computational cost. We present <b>Ref-DGS</b>, 
+          a reflective dual Gaussian splatting framework that addresses this trade-off by decoupling 
+          surface reconstruction from specular reflection within an efficient rasterization-based pipeline. 
+          Ref-DGS introduces a dual Gaussian scene representation consisting of geometry Gaussians and 
+          complementary local reflection Gaussians that capture near-field specular interactions 
+          without explicit ray tracing, along with a global environment reflection field for modeling 
+          far-field specular reflections. To predict specular radiance, we further propose a lightweight, 
+          physically-aware adaptive mixing shader that fuses global and local reflection features. 
+          Experiments demonstrate that Ref-DGS achieves state-of-the-art performance on reflective scenes 
+          while training substantially faster than ray-based Gaussian methods.
+          <!-- <p>
+          Radiance Field methods have recently revolutionized novel-view synthesis
+          of scenes captured with multiple photos or videos. However, achieving high
+          visual quality still requires neural networks that are costly to train and render,
+          while recent faster methods inevitably trade off speed for quality. For
+          <b>unbounded and complete scenes</b> (rather than isolated objects) and <b>1080p</b>
+          resolution rendering, no current method can achieve real-time display rates.<br><br>
+          </p>
+
+          <p>
+          We introduce three key elements that allow us to achieve state-of-the-art
+          visual quality while maintaining competitive training times and importantly
+          allow <b>high-quality real-time</b> (≥ 100 fps) novel-view synthesis at <b>1080p</b> resolution. <br><br>
+          </p>
+
+          First, starting from sparse points produced during camera calibration,
+          we represent the scene with <i>3D Gaussians</i> that preserve desirable properties
+          of continuous volumetric radiance fields for scene optimization while
+          avoiding unnecessary computation in empty space; Second, we perform
+          interleaved optimization/density control of the 3D Gaussians, notably optimizing
+          anisotropic covariance to achieve an accurate representation of the
+          scene; Third, we develop a fast visibility-aware rendering algorithm that
+          supports anisotropic splatting and both accelerates training and allows realtime
+          rendering. We demonstrate state-of-the-art visual quality and real-time
+          rendering on several established datasets. -->
+        </div>
+        <!--
+        <div class="content has-text-justified">
+          <p>
+          View-dependent effects such as <i>reflections</i> pose a substantial challenge for image-based and neural rendering algorithms. Above all, curved reflectors are particularly hard, as they lead to highly non-linear reflection flows as the camera moves. 
+          </p>
+          <p>
+          We introduce a new <i>point-based representation</i> to compute <b>Neural Point Catacaustics</b> allowing novel-view synthesis of scenes with curved reflectors, from a set of casually-captured input photos. At the core of our method is a <b>neural warp field</b> that models catacaustic trajectories of reflections, so complex specular effects can be rendered using efficient point splatting in conjunction with a neural renderer. One of our key contributions is the explicit representation of reflections with a reflection point cloud which is displaced by the neural warp field, and a primary point cloud which is optimized to represent the rest of the scene. After a short manual annotation step, our approach allows <b>interactive high-quality renderings of novel views with accurate reflection flow.</b>
+          </p>
+          <p>
+          Additionally, the explicit representation of reflection flow supports several forms of scene manipulation in captured scenes, such as reflection editing, cloning of specular objects, reflection tracking across views, and comfortable stereo viewing.
+          </p>
+        </div>
+      -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <!-- <h2 class="title is-3">Video</h2> -->
+            <div>
+              <img src="content/images/pipeline.png">
+              <b>An overview of our Ref-DGS framework.</b>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Video</h2>
+            <div class="publication-video">
+              <iframe src="https://www.youtube.com/embed/T_kXY43VZnk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+    
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Evaluation</h2>
+    <div class="content has-text-justified">
+      <p>
+        We evaluate Ref-DGS on the ShinySynthetic dataset, comparing it against state-of-the-art methods including 
+        Ref-Gaussian, Ref-GS, GS-ROR<sup>2</sup>, and MaterialRefGS. The performance is analyzed across three key 
+        dimensions: <strong>surface reconstruction accuracy</strong> (measured by Normal MAE), <strong>novel view 
+          synthesis quality</strong> (measured by PSNR), and <strong>computational efficiency</strong> (Training time). 
+          As illustrated in the charts, our approach significantly outperforms existing baselines in surface reconstruction 
+          with the lowest Normal MAE and achieves superior rendering quality in novel view synthesis. Furthermore, 
+          our method demonstrates exceptional efficiency, completing the training in only 12.6 minutes—a substantial 
+          speedup compared to other reference-based Gaussian Splatting techniques. 
+          For more experimental results on additional datasets, please refer to our paper and supplementary material.
+      </p>
+      </p>
+    </div>
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+            <div class="column content has-text-centered">
+              <img src="content/images/eval.png" alt="Graph for quality evaluation" style="width: 80%; height: auto;">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <!-- <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+            <img src="content/images/Artboard 22.png" alt="Graph for perfomance evaluation">
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- <h2 class="title is-3">Visual Comparisons</h2> -->
+    <h2 class="title is-3">Surface Reconstruction</h2>
+
+    <div class="columns is-multiline is-centered is-variable is-1">
+
+      <!-- Example 1 -->
+      <div class="column is-half-desktop is-half-tablet is-full-mobile">
+        <div id="example1" class="bal-container-small">
+
+          <div class="bal-after">
+            <img src="content/images/comparisons/ours_gardenspheres.png">
+            <div class="bal-afterPosition afterLabel">
+              Ours
+            </div>
+          </div>
+
+          <div class="bal-before">
+            <div class="bal-before-inset">
+              <img src="content/images/comparisons/refgs_gardenspheres.png">
+              <div class="bal-beforePosition beforeLabel">
+                Ref-GS
+              </div>
+            </div>
+          </div>
+
+          <div class="bal-handle">
+            <span class="handle-left-arrow"></span>
+            <span class="handle-right-arrow"></span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Example 2 -->
+      <div class="column is-half-desktop is-half-tablet is-full-mobile">
+        <div id="example2" class="bal-container-small">
+
+          <div class="bal-after">
+            <img src="content/images/comparisons/ours_toycar.png">
+            <div class="bal-afterPosition afterLabel">
+              Ours
+            </div>
+          </div>
+
+          <div class="bal-before">
+            <div class="bal-before-inset">
+              <img src="content/images/comparisons/refgs_toycar.png">
+              <div class="bal-beforePosition beforeLabel">
+                Ref-GS
+              </div>
+            </div>
+          </div>
+
+          <div class="bal-handle">
+            <span class="handle-left-arrow"></span>
+            <span class="handle-right-arrow"></span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Example 3 -->
+      <div class="column is-half-desktop is-half-tablet is-full-mobile">
+        <div id="example4" class="bal-container-small">
+
+          <div class="bal-after">
+            <img src="content/images/comparisons/ours_bear.png">
+            <div class="bal-afterPosition afterLabel">
+              Ours
+            </div>
+          </div>
+
+          <div class="bal-before">
+            <div class="bal-before-inset">
+              <img src="content/images/comparisons/refgs_bear.png">
+              <div class="bal-beforePosition beforeLabel">
+                Ref-GS
+              </div>
+            </div>
+          </div>
+
+          <div class="bal-handle">
+            <span class="handle-left-arrow"></span>
+            <span class="handle-right-arrow"></span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Example 4 -->
+      <div class="column is-half-desktop is-half-tablet is-full-mobile">
+        <div id="example5" class="bal-container-small">
+
+          <div class="bal-after">
+            <img src="content/images/comparisons/ours_vase.png">
+            <div class="bal-afterPosition afterLabel">
+              Ours
+            </div>
+          </div>
+
+          <div class="bal-before">
+            <div class="bal-before-inset">
+              <img src="content/images/comparisons/refgs_vase.png">
+              <div class="bal-beforePosition beforeLabel">
+                Ref-GS
+              </div>
+            </div>
+          </div>
+
+          <div class="bal-handle">
+            <span class="handle-left-arrow"></span>
+            <span class="handle-right-arrow"></span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@Article{kerbl3Dgaussians,
+      author       = {Kerbl, Bernhard and Kopanas, Georgios and Leimk{\"u}hler, Thomas and Drettakis, George},
+      title        = {3D Gaussian Splatting for Real-Time Radiance Field Rendering},
+      journal      = {ACM Transactions on Graphics},
+      number       = {4},
+      volume       = {42},
+      month        = {July},
+      year         = {2023},
+      url          = {https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/}
+}</code></pre>
+    <!--
+    <pre><code>@article{kopanas2022neural,
+      title={Neural Point Catacaustics for Novel-View Synthesis of Reflections},
+      author={Kopanas, Georgios and Leimk{\"u}hler, Thomas and Rainer, Gilles and Jambon, Cl{\'e}ment and Drettakis, George},
+      journal={ACM Transactions on Graphics},
+      volume={41},
+      number={6},
+      pages={Article--201},
+      year={2022}
+    }</code></pre>-->
+  </div>
+</section>
+
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+      <h2 class="title is-3">Acknowledgments and Funding</h2>
+      <img src="content/images/erc.jpg">
+      <p>
+	   This research was funded by the ERC Advanced grant <a href="http://fungraph.inria.fr">FUNGRAPH</a> No 788065. The authors are grateful to Adobe for generous donations, the OPAL infrastructure from Université Côte d’Azur  and for the HPC resources from GENCI–IDRIS (Grant 2022-AD011013409). The authors thank the anonymous reviewers for their valuable feedback, P. Hedman and A. Tewari for proofreading earlier drafts also T. Müller, A. Yu and S. Fridovich-Keil for helping with the comparisons. 
+       </p>
+  </div>
+</section> -->
+
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">References</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            [Müller 2022] Müller, T., Evans, A., Schied, C. and Keller, A., 2022. Instant neural graphics primitives with a multiresolution hash encoding
+          </p>
+          <p>
+            [Hedman 2018] Hedman, P., Philip, J., Price, T., Frahm, J.M., Drettakis, G. and Brostow, G., 2018. Deep blending for free-viewpoint image-based rendering. ACM Transactions on Graphics (TOG), 37(6), pp.1-15.
+          </p>
+          <p>
+            [Barron 2022] Barron, Jonathan T., et al. "Mip-nerf 360: Unbounded anti-aliased neural radiance fields." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022.
+            </p>  
+            <p>
+            [Fridovich-Keil and Yu 2022] Fridovich-Keil, Sara, et al. "Plenoxels: Radiance fields without neural networks." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022.
+              </p>
+              <p>
+                [Knapitsch 2017] Knapitsch, Arno, et al. "Tanks and temples: Benchmarking large-scale scene reconstruction." ACM Transactions on Graphics (ToG) 36.4 (2017): 1-13.
+              </p>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Concurrent Work. -->
+  <!-- </div>
+</section> -->
+
+
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="http://www-sop.inria.fr/reves/Basilic/2021/KPLD21/">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="#top" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            We thank the authors of <a href="https://nerfies.github.io/">Nerfies</a> that kindly open sourced the template of this website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="static/js/script.js"></script>
+
+<script>
+    new BeforeAfter({
+        id: '#example1'
+    });
+    new BeforeAfter({
+        id: '#example2'
+    });
+    new BeforeAfter({
+        id: '#example4'
+    });
+    new BeforeAfter({
+        id: '#example5'
+    });
+    // new BeforeAfter({
+    //     id: '#example6'
+    // });
+    // new BeforeAfter({
+    //     id: '#example7'
+    // });
+    // new BeforeAfter({
+    //     id: '#example8'
+    // });
+
+</script>
+
+</body>
+</html>
