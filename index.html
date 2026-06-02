@@ -72,7 +72,7 @@
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">Ref-DGS: Reflective Dual Gaussian Splatting</h1>
           <!-- <h1 style="font-size:1.5rem"> SIGGRAPH 2026 Submission<br>(ACM Transactions on Graphics) <br></h1> -->
-           <h1 style="font-size:1.5rem">Conditionally accepted to SIGGRAPH</h1>
+           <h1 style="font-size:1.5rem; color:red;">SIGGRAPH 2026</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a>Ningjing Fan</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -93,7 +93,7 @@
 
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>1</sup>Chongqing University</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="author-block"><sup>2</sup>Institute of Automation, Chinese Academy of Sciences</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="author-block"><sup>2</sup>MAIS, Institute of Automation, Chinese Academy of Sciences, and UCAS</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span class="author-block"><sup>3</sup>King Abdullah University of Science and Technology (KAUST)</span>
           </div>
 <!-- 
@@ -239,19 +239,7 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
-          Reflective appearance, especially strong and typically near-field specular reflections, 
-          poses a fundamental challenge for accurate surface reconstruction and novel view synthesis. 
-          Existing Gaussian splatting methods either fail to model near-field specular reflections or 
-          rely on explicit ray tracing at substantial computational cost. We present <b>Ref-DGS</b>, 
-          a reflective dual Gaussian splatting framework that addresses this trade-off by decoupling 
-          surface reconstruction from specular reflection within an efficient rasterization-based pipeline. 
-          Ref-DGS introduces a dual Gaussian scene representation consisting of geometry Gaussians and 
-          complementary local reflection Gaussians that capture near-field specular interactions 
-          without explicit ray tracing, along with a global environment reflection field for modeling 
-          far-field specular reflections. To predict specular radiance, we further propose a lightweight, 
-          physically-aware adaptive mixing shader that fuses global and local reflection features. 
-          Experiments demonstrate that Ref-DGS achieves state-of-the-art performance on reflective scenes 
-          while training substantially faster than ray-based Gaussian methods.
+          The reflective appearance, especially strong and typically near-field specular reflections, poses a fundamental challenge for accurate surface reconstruction and novel view synthesis. Existing Gaussian splatting methods either fail to model near-field specular reflections or rely on explicit ray tracing at substantial computational cost. We present <b>Ref-DGS</b>, a reflective dual Gaussian splatting framework that addresses this trade-off by decoupling surface reconstruction from specular reflection within an efficient rasterization-based pipeline. Ref-DGS introduces a dual Gaussian scene representation consisting of geometry Gaussians and complementary local reflection Gaussians that capture near-field specular interactions without explicit ray tracing, along with a global environment reflection field for modeling far-field specular reflections. To predict specular radiance, we further propose a lightweight, physically-aware specular adaptive mixing shader that fuses global and local specular features. Experiments demonstrate that Ref-DGS achieves state-of-the-art performance on reflective scenes while training substantially faster than ray-based Gaussian methods.
           <!-- <p>
           Radiance Field methods have recently revolutionized novel-view synthesis
           of scenes captured with multiple photos or videos. However, achieving high
