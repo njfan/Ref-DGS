@@ -1,12 +1,12 @@
 # Ref-DGS:Reflective Dual Gaussian Splatting
 
-<!-- ## [Project Page](https://ref-gs.github.io/) | [Paper](https://arxiv.org/pdf/2412.00905) | [arXiv](https://arxiv.org/abs/2412.00905)
+## [Project Page](https://njfan.github.io/Ref-DGS/) | [Paper](https://arxiv.org/pdf/2603.07664) | [arXiv](https://arxiv.org/abs/2603.07664)
 
 > Ref-DGS:Reflective Dual Gaussian Splatting<br>
-> [Youjia Zhang](https://youjiazhang.github.io/), [Anpei Chen](https://apchenstu.github.io/), [Yumin Wan](https://ref-gs.github.io/), [Zikai Song](https://skyesong38.github.io/), [Junqing Yu](https://scholar.google.com/citations?hl=zh-CN&user=_UjqBfcAAAAJ), [Yawei Luo](https://scholar.google.com/citations?hl=zh-CN&user=pnVwaGsAAAAJ), [Wei Yang](https://weiyang-hust.github.io/)<br>
-> CVPR 2025
+> [Ningjing Fan](https://github.com/njfan), [Yiqun Wang](https://sites.google.com/view/yiqun-wang/home), [Dong-Ming Yan](https://scholar.google.com/citations?user=xAFSO3AAAAAJ&hl=en&oi=sra), [Peter Wonka](https://peterwonka.net/)<br>
+> SIGGRAPH 2026
 
-![teaser](assets/teaser.jpg) -->
+![teaser](assets/teaser.png)
 
 ## ⚙️ Setup
 
@@ -50,8 +50,17 @@ data
 
 ## 🧭 Depth and Normal Priors
 
-For the synthetic datasets **ShinySynthetic** and **GlossySynthetic**, we use depth priors inferred by VGGT.  
-The generated depth maps are stored in the VGGT project output directory with the following structure:
+Pre-computed depth and normal priors are available on [Hugging Face](https://huggingface.co/datasets/njfan/Ref-DGS_Priors). Download and place them at the project root:
+
+```bash
+git clone https://huggingface.co/datasets/njfan/Ref-DGS_Priors
+mv Ref-DGS_Priors priors
+```
+
+For the synthetic datasets **ShinySynthetic** and **GlossySynthetic**, depth and normal priors are inferred by [VGGT](https://github.com/facebookresearch/vggt).  
+For the real-world datasets **RefReal** and **GlossyReal**, depth and normal priors are inferred by [Metric3D](https://github.com/YvanYin/Metric3D).
+
+The expected directory structure is:
 
 ```bash
 priors
@@ -62,19 +71,6 @@ priors
                 └── <image_name>.pth
             └── normal
                 └── <image_name>.png
-└── Glossy
-    └── GlossySynthetic
-        └── scene_name
-            └── depth
-            └── normal
-```
-
-For the real-world datasets **RefReal** and **GlossyReal**, we use depth and normal priors inferred by Matric3D.
-The generated results are stored in the Matric3D project output directory with the following structure:
-
-```bash
-priors
-└── Ref-NeRF
     └── ref_real
         └── scene_name
             └── depth
@@ -82,6 +78,10 @@ priors
             └── normal
                 └── <image_name>.jpg
 └── Glossy
+    └── GlossySynthetic
+        └── scene_name
+            └── depth
+            └── normal
     └── GlossyReal
         └── scene_name
             └── depth
