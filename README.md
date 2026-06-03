@@ -3,7 +3,7 @@
 ## [Project Page](https://njfan.github.io/Ref-DGS/) | [Paper](https://arxiv.org/pdf/2603.07664) | [arXiv](https://arxiv.org/abs/2603.07664)
 
 > Ref-DGS:Reflective Dual Gaussian Splatting<br>
-> [Ningjing Fan](https://github.com/njfan), [Yiqun Wang](https://sites.google.com/view/yiqun-wang/home), [Dong-Ming Yan](https://scholar.google.com/citations?user=xAFSO3AAAAAJ&hl=en&oi=sra), [Peter Wonka](https://peterwonka.net/)<br>
+> [Ningjing Fan](https://njfan.github.io/), [Yiqun Wang](https://sites.google.com/view/yiqun-wang/home), [Dong-Ming Yan](https://scholar.google.com/citations?user=xAFSO3AAAAAJ&hl=en&oi=sra), [Peter Wonka](https://peterwonka.net/)<br>
 > SIGGRAPH 2026
 
 ![teaser](assets/teaser.png)
