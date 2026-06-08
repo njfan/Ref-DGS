@@ -53,8 +53,9 @@ data
 Pre-computed depth and normal priors are available on [Hugging Face](https://huggingface.co/datasets/njfan/Ref-DGS_Priors). Download and place them at the project root:
 
 ```bash
-git clone https://huggingface.co/datasets/njfan/Ref-DGS_Priors
-mv Ref-DGS_Priors priors
+hf download njfan/Ref-DGS_Priors \
+    --repo-type dataset \
+    --local-dir priors
 ```
 
 For the synthetic datasets **ShinySynthetic** and **GlossySynthetic**, depth and normal priors are inferred by [VGGT](https://github.com/facebookresearch/vggt).  
