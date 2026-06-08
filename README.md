@@ -50,7 +50,7 @@ data
 
 ## 🧭 Depth and Normal Priors
 
-Pre-computed depth and normal priors are available on [Hugging Face](https://huggingface.co/datasets/njfan/Ref-DGS_Priors). Download and place them at the project root:
+Pre-computed depth and normal priors are available on [Hugging Face](https://huggingface.co/datasets/njfan/Ref-DGS_Priors). From the project root, run:
 
 ```bash
 hf download njfan/Ref-DGS_Priors \
